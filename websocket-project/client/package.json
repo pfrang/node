@@ -12,6 +12,7 @@
     "@types/lodash.throttle": "^4.1.9",
     "lodash.throttle": "^4.1.1",
     "next": "14.2.3",
+    "perfect-cursors": "^1.0.5",
     "react": "^18",
     "react-dom": "^18",
     "react-use-websocket": "^4.8.1"

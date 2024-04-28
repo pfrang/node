@@ -4,7 +4,7 @@ const url = require("url");
 const server = http.createServer();
 const uuidv4 = require("uuid").v4
 const wsServer = new WebSocketServer({ server: server });
-const port = 8000;
+const port = process.env.PORT || 8080;
 
 const connections = {};
 const users = {};

@@ -36,7 +36,7 @@ const renderUsersList = (users: Users) => {
 
 export const Lobby = ({username}) => {
 
-  const WS_URL = "ws://localhost:8000"
+  const WS_URL = process.env.NEXT_PUBLIC_WS_URL;
   const { sendJsonMessage, lastJsonMessage } = useWebSocket(WS_URL, {
     queryParams: {username}
   })
