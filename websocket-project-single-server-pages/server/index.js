@@ -51,16 +51,13 @@ const handleClose = uuid => {
 }
 
 const handler = (connection, request) => {
- const uuid = uuidv4();
-
-  try {
-
 
   const { username } = parse(request.url, true).query
-  console.log(`${username} has connected`);
+  const uuid = uuidv4();
+  console.log(username);
+  console.log(uuid);
   // broadcast // fan out
   connections[uuid] = connection
-  // console.log(`${JSON.stringify(connections[uuid])}`)
   users[uuid] = {
     username,
     state: {
@@ -68,18 +65,9 @@ const handler = (connection, request) => {
       y: 0,
     }
   }
-  } catch (e) {
-    console.log(`Error ${e}`)
-  }
 
-
-  connection.on('message', message => {
-    handleMessage(message, uuid)
-  });
-  connection.on('close', (event) => {
-    console.log(`WebSocket connection closed with code ${JSON.stringify(event)} and reason "${event.message}"`);
-    handleClose(uuid);
-  });
+  connection.on('message', message => handleMessage(message, uuid));
+  connection.on('close', () => handleClose(uuid));
 }
 
 

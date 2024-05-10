@@ -1,33 +1,35 @@
 {
-  "name": "client",
+  "name": "websocket-project-single-server-pages",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node server/index.js",
+    "dev": "NODE_ENV=development node server/index.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server/index.js"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@types/lodash.throttle": "^4.1.9",
-    "dotenv": "^16.4.5",
-    "lodash.throttle": "^4.1.1",
-    "next": "14.2.3",
-    "perfect-cursors": "^1.0.5",
     "react": "^18",
     "react-dom": "^18",
+    "next": "14.2.3",
+    "@types/lodash.throttle": "^4.1.9",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "lodash.throttle": "^4.1.1",
+    "perfect-cursors": "^1.0.5",
     "react-use-websocket": "^4.8.1",
     "url": "^0.11.3",
     "uuid": "^9.0.1",
     "ws": "^8.16.0"
   },
   "devDependencies": {
+    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.3",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3"
   }
 }
