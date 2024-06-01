@@ -51,23 +51,23 @@ const handleClose = uuid => {
 }
 
 const handler = (connection, request) => {
- const uuid = uuidv4();
+  const uuid = uuidv4();
 
   try {
 
 
-  const { username } = parse(request.url, true).query
-  console.log(`${username} has connected`);
-  // broadcast // fan out
-  connections[uuid] = connection
-  // console.log(`${JSON.stringify(connections[uuid])}`)
-  users[uuid] = {
-    username,
-    state: {
-      x: 0,
-      y: 0,
+    const { username } = parse(request.url, true).query
+    console.log(`${username} has connected`);
+    // broadcast // fan out
+    connections[uuid] = connection
+    // console.log(`${JSON.stringify(connections[uuid])}`)
+    users[uuid] = {
+      username,
+      state: {
+        x: 0,
+        y: 0,
+      }
     }
-  }
   } catch (e) {
     console.log(`Error ${e}`)
   }
@@ -93,8 +93,12 @@ nextApp.prepare().then(() => {
   });
   // Next.js handling
   server.on('upgrade', function (req, socket, head) {
+
     const { pathname } = parse(req.url, true);
     if (pathname !== '/_next/webpack-hmr') {
+      console.log(req.headers)
+      console.log(req.url)
+      console.log("....", req.url)
       wss.handleUpgrade(req, socket, head, function done(ws) {
         wss.emit('connection', ws, req);
       });

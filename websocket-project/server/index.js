@@ -48,17 +48,19 @@ wsServer.on('connection', (connection, request) => {
 
 	const { username } = url.parse(request.url, true).query
 	const uuid = uuidv4();
-	console.log(username);
-	console.log(uuid);
-	// broadcast // fan out
-	connections[uuid] = connection
-	users[uuid] = {
-		username,
-		state: {
-			x: 0,
-			y: 0,
-		}
-	}
+  if(username) {
+    console.log(username);
+    console.log(uuid);
+    // broadcast // fan out
+    connections[uuid] = connection
+    users[uuid] = {
+      username,
+      state: {
+        x: 0,
+        y: 0,
+      }
+    }
+  }
 
 	connection.on('message', message => handleMessage(message, uuid));
 	connection.on('close', () => handleClose(uuid));
